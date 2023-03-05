@@ -1,7 +1,8 @@
+using DAL.Data;
 using Microsoft.EntityFrameworkCore;
 using MyMessenger.Data;
 
-namespace MyMessenger.Repository;
+namespace DAL.Repository;
 
 public class Repository<T> : IRepository<T> where T : class
 {

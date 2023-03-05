@@ -1,4 +1,4 @@
-namespace MyMessenger.Repository;
+namespace DAL.Repository;
 
 public interface IRepository<T> where T : class
 {

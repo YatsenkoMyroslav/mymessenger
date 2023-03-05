@@ -1,4 +1,6 @@
-namespace MyMessenger.Models;
+using MyMessenger.Models;
+
+namespace DAL.Models;
 
 public class Chat
 {

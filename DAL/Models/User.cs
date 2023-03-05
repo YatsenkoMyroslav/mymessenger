@@ -1,3 +1,4 @@
+using DAL.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace MyMessenger.Models;

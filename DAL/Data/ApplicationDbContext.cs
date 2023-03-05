@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using DAL.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using MyMessenger.Models;
 
-namespace MyMessenger.Data;
+namespace DAL.Data;
 
 public class ApplicationDbContext : IdentityDbContext<User>
 {

@@ -1,7 +1,9 @@
+using DAL.Data;
+using DAL.Models;
 using MyMessenger.Data;
 using MyMessenger.Models;
 
-namespace MyMessenger.Repository;
+namespace DAL.Repository;
 
 public class ChatRepository:Repository<Chat>
 {
