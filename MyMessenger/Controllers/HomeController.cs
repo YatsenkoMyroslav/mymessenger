@@ -15,6 +15,10 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        var userIdentity = User.Identity;
+        if (userIdentity is { IsAuthenticated: true })
+            return Redirect("/chat");
+
         return View();
     }
 

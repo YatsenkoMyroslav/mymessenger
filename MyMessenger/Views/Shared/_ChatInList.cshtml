@@ -1,0 +1,10 @@
+@model BLL.Services.Dto.ChatDto
+
+<a asp-controller="Chat" asp-action="GetChatById" asp-route-id="@Model.Id">
+    <div class="chatInBlock">
+        <div class="demoChat">
+            <div>@Model.ChatName</div>
+            <span class="messegeDemo">@Model.Messeges.Last().Value...</span>
+        </div>
+    </div>
+</a>

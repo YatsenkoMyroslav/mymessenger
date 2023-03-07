@@ -1,0 +1,12 @@
+@using BLL.Services.Dto
+@model IEnumerable<ChatDto>
+
+<div class="chatsBlock">
+    @await Html.PartialAsync("_SearchChatForm")
+    @{
+        foreach (ChatDto chat in Model)
+        {
+            @await Html.PartialAsync("_ChatInList", chat)
+        }
+    }
+</div>
