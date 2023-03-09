@@ -1,0 +1,29 @@
+@model BLL.Services.Dto.UserDto
+<div class="profileDataBlock">
+    <div class="insideProfileDataBlock photoProfileCircle mt-3">
+        <img src="https://static.thenounproject.com/png/5034901-200.png" class="profilePhoto" alt="Profile photo"/>
+    </div>
+    
+    <div class="insideProfileDataBlock mt-5">
+        @{
+            if (!(string.IsNullOrEmpty(Model.Name) && string.IsNullOrEmpty(Model.LastName)))
+            {
+                <div class="insideProfileDataBlock profileName display-3">@Model.Name @Model.LastName</div>
+            }
+            else
+            {
+                <div class="insideProfileDataBlock profileName display-3">You haven`t entered yourself info</div>
+            }
+        }
+    </div>
+    <div class="insideProfileDataBlock">
+        <button class="custom-button" onclick="windowChangePersonalInfo()">
+            Change personal information
+        </button>
+    </div>
+    
+    <div class="profileEmail insideProfileDataBlock display-5 mt-5">@Model.Email</div>
+    <a class="nav-link btn btn-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Email">Edit your email</a>
+    
+    @await Html.PartialAsync("_ChangePersonalData")
+</div>

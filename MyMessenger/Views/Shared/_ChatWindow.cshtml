@@ -1,24 +1,35 @@
 @using BLL.Services.Dto
-@model ChatDto
+@model Tuple<string,ChatDto>
 
-<div class="ChatWindow">
-    <div class="chatHeader">
-        <div style="font-size: 18px">@Model.ChatName</div>
-        <div>@Model.Participants.Count participants</div>
+<div class="ChatWindow" id="ChatWindow">
+    <div class="chatHeader" id="ChatHeader">
+        <div style="font-size: 18px">@Model.Item2.ChatName</div>
+        <div>@Model.Item2.Participants.Count participants</div>
     </div>
 
-    <div class="BlockForMessages">
+    <div class="BlockForMessages" id="BlockForMessages">
+        
         @{
-            foreach (var message in Model.Messeges)
+            foreach (var message in Model.Item2.Messeges)
             {
-                <div class="messageInChatBlock">
-                    @await Html.PartialAsync("_MessageInChat", message)
-                </div>
+                if (message.Sender.Id == Model.Item1)
+                {
+                    
+                    <div class="messageInChatBlock">
+                        @await Html.PartialAsync("_MessageInChat", message)
+                    </div>
+                }
+                else
+                {
+                    <div class="messageInChatBlock" style="margin-right: auto">
+                        @await Html.PartialAsync("_MessageInChat", message)
+                    </div>
+                }
             }
         }
     </div>
     
-    <div class="messageInputFormInChat">
+    <div class="messageInputFormInChat" id="MessageSendForm">
         @await Html.PartialAsync("_SendForm")
     </div>
 </div>

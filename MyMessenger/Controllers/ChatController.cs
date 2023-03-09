@@ -9,19 +9,21 @@ using MyMessenger.ViewModel;
 
 namespace MyMessenger.Controllers;
 
+[Route("[controller]")]
 public class ChatController : Controller
 {
     private UserManager<User> _userManager;
     private ChatService _chatService;
+    private ChatDto? chat;
 
     public ChatController(ChatService service, UserManager<User> userManager)
     {
         _chatService = service;
         _userManager = userManager;
+        chat = null;
     }
         
-    [HttpGet]
-    [Route("/chat")]
+    [HttpGet("/chat")]
     [Authorize]
     public async Task<IActionResult> Index()
     {
@@ -108,9 +110,17 @@ public class ChatController : Controller
         }
         return Redirect("/");
     }
+    
+    [HttpPost("chat/chat/send_message")]
+    public JsonResult SendMessage()
+    {
+        var message = Request.Form["message"];
+        Console.WriteLine("Message: "+message);
+        
+        return new JsonResult(Ok());
+    }
 
-    [HttpGet]
-    [Route("/chat/{id}")]
+    [HttpGet("chat/{id}")]
     public async Task<IActionResult> GetChatById(int id)
     {
         var userIdentity = User.Identity;
@@ -132,6 +142,96 @@ public class ChatController : Controller
                     ChatName = "Some chat",
                     Messeges = new List<MessegeDto>()
                     {
+                        new MessegeDto()
+                        {
+                            Value = "Hello, test messege for you my friend",
+                            SentOn = DateTime.Now,
+                            Sender = new UserDto()
+                            {
+                                Name = "Name",
+                                Id = "nvirnrk"
+                            }
+                        },
+                        new MessegeDto()
+                        {
+                            Value = "Hello, test messege for you my friend3Hello, test messege for you my friend3Hello, test messege for you my friend3Hello, test messege for you my friend3Hello, test messege for you my friend3Hello, test messege for you my friend3",
+                            SentOn = DateTime.Now,
+                            Sender = new UserDto()
+                            {
+                                Name = "Myroslav",
+                                Id = "b10b5c7b-6af6-4d0d-b39f-6b858961ed1a"
+                            }
+                        },new MessegeDto()
+                        {
+                            Value = "Hello, test messege for you my friend3",
+                            SentOn = DateTime.Now,
+                            Sender = new UserDto()
+                            {
+                                Name = "Name",
+                                LastName = "LastName",
+                                Id = "nvirnrk"
+                            }
+                        },
+                        new MessegeDto()
+                        {
+                            Value = "Hello, test messege for you my friend",
+                            SentOn = DateTime.Now,
+                            Sender = new UserDto()
+                            {
+                                Name = "Name",
+                                Id = "nvirnrk"
+                            }
+                        },
+                        new MessegeDto()
+                        {
+                            Value = "you my friend3Hello, test messege for you my friend3",
+                            SentOn = DateTime.Now,
+                            Sender = new UserDto()
+                            {
+                                Name = "Myroslav",
+                                Id = "b10b5c7b-6af6-4d0d-b39f-6b858961ed1a"
+                            }
+                        },new MessegeDto()
+                        {
+                            Value = "Hello, test messege for you my friend3",
+                            SentOn = DateTime.Now,
+                            Sender = new UserDto()
+                            {
+                                Name = "Name",
+                                LastName = "LastName",
+                                Id = "nvirnrk"
+                            }
+                        },
+                        new MessegeDto()
+                        {
+                            Value = "Hello, test messege for you my friend",
+                            SentOn = DateTime.Now,
+                            Sender = new UserDto()
+                            {
+                                Name = "Name",
+                                Id = "nvirnrk"
+                            }
+                        },
+                        new MessegeDto()
+                        {
+                            Value = "Hello, test messege for you my friend3Hello, test messege for you my friend3Hello, test messege for you my friend3Hello, test messege for you my friend3Hello, test messege for you my friend3Hello, test messege for you my friend3",
+                            SentOn = DateTime.Now,
+                            Sender = new UserDto()
+                            {
+                                Name = "Myroslav",
+                                Id = "b10b5c7b-6af6-4d0d-b39f-6b858961ed1a"
+                            }
+                        },new MessegeDto()
+                        {
+                            Value = "Hello, test messege for you my friend3",
+                            SentOn = DateTime.Now,
+                            Sender = new UserDto()
+                            {
+                                Name = "Name",
+                                LastName = "LastName",
+                                Id = "nvirnrk"
+                            }
+                        },
                         new MessegeDto()
                         {
                             Value = "Hello, test messege for you my friend",
@@ -231,16 +331,19 @@ public class ChatController : Controller
                 }
             };
 
-            var selected = chats.First(c => c.Id == id);
+            this.chat = chats.First(c => c.Id == id);
+            var user = await _userManager.GetUserByClaimsIdentityNameAsync(userIdentity);
             
             var response = new ChatsAndSelected()
             {
                 Chats = chats,
-                Selected = selected
+                Selected = new Tuple<string, ChatDto>(user.Id,chat)
             };
             
             return View(response);
         }
         return Redirect("/");
     }
+
+    
 }

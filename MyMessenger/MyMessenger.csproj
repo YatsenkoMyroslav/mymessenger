@@ -31,6 +31,7 @@
       <Compile Remove="Pages\**" />
       <Compile Remove="Views\Shared\MessageDto.cs" />
       <Compile Remove="wwwroot\img\**" />
+      <Compile Remove="Controllers\ProfileController.cs" />
     </ItemGroup>
 
     <ItemGroup>
@@ -42,6 +43,7 @@
       <Content Remove="Pages\**" />
       <Content Remove="wwwroot\img\search.svg" />
       <Content Remove="wwwroot\img\send.svg" />
+      <Content Remove="wwwroot\img\DemoAvatar.png" />
       <Content Remove="wwwroot\img\**" />
     </ItemGroup>
 
@@ -49,6 +51,7 @@
       <_ContentIncludedByDefault Remove="Pages\Chat\Index.cshtml" />
       <_ContentIncludedByDefault Remove="wwwroot\img\search.svg" />
       <_ContentIncludedByDefault Remove="wwwroot\img\send.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\DemoAvatar.png" />
     </ItemGroup>
 
 </Project>

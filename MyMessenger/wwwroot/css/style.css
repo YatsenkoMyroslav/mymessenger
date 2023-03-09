@@ -54,8 +54,8 @@ a:hover{
     background-color: #E2E2E2;
     margin-left: auto;
     margin-right: auto;
-    display: flex;
-    flex-direction: column;
+    display: block;
+    
 }
 
 .chatHeader{
@@ -94,9 +94,12 @@ a:hover{
 }
 
 .messageInputFormInChat{
-    position: fixed;
+    float: bottom;
     bottom: 0;
     width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
     padding-bottom: 15px;
 }
 #SearchChatButton{
@@ -112,12 +115,15 @@ a:hover{
 }
 
 .BlockForMessages{
+    background: #F1F0FF;
     display: flex;
     flex-direction: column;
+    overflow: auto;
+    align-items: end;
+    
 }
 
 .messageInChatBlock{
-    display: inline-block;
     border: solid 1px #858585;
     border-radius: 5px;
     background: #FFE7E7;
@@ -126,6 +132,37 @@ a:hover{
     margin-right: 1em;
     padding: 5px;
     width: fit-content;
+    display: block;
     max-width: 70%;
-    float: left;
+}
+
+#small-window {
+    position: absolute;
+    overflow: auto;
+    top: -9999px;
+    left: -9999px;
+    width: 20%;
+    height: 50%;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+.cross{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.photoProfileCircle{
+    border: solid 3px #2c3034;
+    border-radius: 50%;
+}
+
+.insideProfileDataBlock{
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
 }

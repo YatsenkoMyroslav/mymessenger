@@ -1,12 +1,15 @@
 @using BLL.Services.Dto
 @model IEnumerable<ChatDto>
 
-<div class="chatsBlock">
+<div class="chatsBlock" id="ChatsList">
     @await Html.PartialAsync("_SearchChatForm")
+    <button type="button" class="btn w-100 btn-primary rounded-pill" onclick="windowGetContactsForNewChat()">Create new chat</button>
     @{
         foreach (ChatDto chat in Model)
         {
             @await Html.PartialAsync("_ChatInList", chat)
         }
     }
+
+    @await Html.PartialAsync("_CreateChat")
 </div>

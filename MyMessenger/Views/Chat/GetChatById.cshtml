@@ -1,7 +1,7 @@
 @using BLL.Services.Dto
 @{
     IEnumerable<ChatDto> list = Model.Chats;
-    ChatDto chat = Model.Selected;
+    Tuple<string, ChatDto> chat = Model.Selected;
 }
 <div class="WindowLayout">
 @await Html.PartialAsync("_ChatsBlock", list)
